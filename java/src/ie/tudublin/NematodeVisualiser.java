@@ -97,7 +97,14 @@ public class NematodeVisualiser extends PApplet
 							circle(width/2, (height/2)+(5*j), 5);
 							}
 				}
-				
+				if (this.isEyes == 1)
+				{
+					stroke((width/2)+2,(height/2)+5, 3);
+					circle((width/2)-4,(height/2)+10,2);
+					stroke((width/2)-2,(height/2)+5, 3);
+					circle((width/2)-4,(height/2)+10,2);
+				}
+
 			}
 
 		}
