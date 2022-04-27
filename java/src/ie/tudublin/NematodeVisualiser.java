@@ -8,6 +8,7 @@ import processing.data.TableRow;
 
 public class NematodeVisualiser extends PApplet
 {
+	public float border;
 	ArrayList<Nematode> nematodes = new ArrayList<Nematode>();
 
 	public void keyPressed()
@@ -28,9 +29,10 @@ public class NematodeVisualiser extends PApplet
 	{
 		size(800, 800);
 	}
-
+	Nematode first = null;
 	public void setup() 
 	{
+		loadNematodes();
 		colorMode(HSB);
 		background(0);
 		stroke(255, 0, 255); //pink line
@@ -46,16 +48,58 @@ public class NematodeVisualiser extends PApplet
         Table table = loadTable("nematodes.csv", "header");
         for(TableRow r:table.rows())
         {
-            Nematode nemato = new Nematode(r);
-            nematodes.add(nemato);
+            Nematode nematode = new Nematode(r);
+            nematodes.add(nematode);
         }
 	}
+	
 
+	public void drawNematodes()
+    {
+        for(Nematode n:nematodes)
+			{
+				n.render(this);
+			}
+    }
 
-	public void draw()
+	public void draw(Nematode pa)
 	{	
-		for (Nematode n : nematodes) {
-			
+		drawNematodes();
+		textAlign(CENTER);
+		text(nematode.this.name, 400,50);
+		
+        if (nematode.this.name != null)
+        {
+			textAlign(CENTER);
+			text(nematode.this.name, 400,50);
+				
+				for(int j= 0; j<=this.Length; j++)
+				{
+					if (j != this.Length)
+					{
+						circle(width/2, (height/2)+(5*j), 5);
+					}
+					else{
+						if (this.Gender=="f"){
+							circle(width/2, (height/2)+(5*j), 5);
+							circle(width/2, (height/2)+(5*j), 2);
+						}
+						if (this.Gender=="h"){
+							circle(width/2, (height/2)+(5*j), 5);
+							circle(width/2, (height/2)+(5*j), 2);
+							stroke(width/2, (height/2)+(5*j)+5,2);
+						}
+						if (this.Gender=="m"){
+							circle(width/2, (height/2)+(5*j), 5);
+							stroke(width/2, (height/2)+(5*j)+5,2);
+						}
+						if (this.Gender=="n"){
+							circle(width/2, (height/2)+(5*j), 5);
+							}
+				}
+				
+			}
+
 		}
 	}
 }
